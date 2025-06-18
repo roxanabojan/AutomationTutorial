@@ -48,6 +48,8 @@ public class AlertsTest {
         Alert alertWait = driver.switchTo().alert();
         alertOK.accept();
 
+        //!!!! adauga parte de scroll
+
         WebElement alertOkCancelElement = driver.findElement(By.id("confirmButton"));
         alertOkCancelElement.click();
 
