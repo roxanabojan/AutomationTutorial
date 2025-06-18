@@ -135,8 +135,6 @@ public class PracticeFormTest {
 
 
 
-
-
 //        String genderValue = "Female";
 //        List<WebElement> genderElementList = driver.findElements(By.cssSelector("div[id='genterWrapper']>div>div>label[class='custom-control-label']"));
 //        switch (genderValue){
