@@ -49,6 +49,8 @@ public class AlertsTest {
         alertOK.accept();
 
         //!!!! adauga parte de scroll
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("window.scrollBy(0,400)", "");
 
         WebElement alertOkCancelElement = driver.findElement(By.id("confirmButton"));
         alertOkCancelElement.click();
