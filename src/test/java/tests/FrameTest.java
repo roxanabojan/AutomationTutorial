@@ -6,25 +6,14 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.Test;
+import sharedData.SharedData;
 
 import java.time.Duration;
 
-public class FrameTest {
-    public WebDriver driver;
+public class FrameTest extends SharedData {
 
     @Test
     public void testMethod() {
-        //Deschidem o instanta de Chrome.
-        driver = new ChromeDriver();
-
-        //Accesam o pagina specifica.
-        driver.get("https://demoqa.com");
-
-        //Facem browserul sa fie in modul maximize.
-        driver.manage().window().maximize();
-
-        //wait implicit
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 
         WebElement alertFrameWindowMenu = driver.findElement(By.xpath("//h5[text()='Alerts, Frame & Windows']"));
         JavascriptExecutor executor = (JavascriptExecutor) driver;

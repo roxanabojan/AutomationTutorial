@@ -6,6 +6,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+import sharedData.SharedData;
 
 import java.io.File;
 import java.time.Duration;
@@ -14,21 +15,11 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
-public class PracticeFormTest {
-    public WebDriver driver;
+public class PracticeFormTest extends SharedData {
 
     @Test
     public void testMethod() {
-        //Deschidem o instanta de Chrome.
-        driver = new ChromeDriver();
 
-        //Accesam o pagina specifica.
-        driver.get("https://demoqa.com");
-
-        //Facem browserul sa fie in modul maximize.
-        driver.manage().window().maximize();
-        //Wait implicit - punem un timp maxim cat sa astepte, dar nu o sa astepte maximul, daca dupa 1 sec merge, el isi face treaba in continuare
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 
         WebElement formsMenu = driver.findElement(By.xpath("//h5[text()='Forms']"));
         JavascriptExecutor executor = (JavascriptExecutor) driver;
