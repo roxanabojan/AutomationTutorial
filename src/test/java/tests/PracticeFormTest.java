@@ -1,7 +1,8 @@
 package tests;
 
+import helperMethods.ElementHelper;
+import helperMethods.PageHelper;
 import org.openqa.selenium.*;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
@@ -10,23 +11,22 @@ import sharedData.SharedData;
 
 import java.io.File;
 import java.time.Duration;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Map;
 
 public class PracticeFormTest extends SharedData {
 
     @Test
     public void testMethod() {
 
+        ElementHelper elementHelper = new ElementHelper(driver);
+        PageHelper pageHelper = new PageHelper(driver);
 
         WebElement formsMenu = driver.findElement(By.xpath("//h5[text()='Forms']"));
-        JavascriptExecutor executor = (JavascriptExecutor) driver;
-        executor.executeScript("arguments[0].click();", formsMenu);
+        elementHelper.clickJSElement(formsMenu);
 
         WebElement practiceFormsSubMenu = driver.findElement(By.xpath("//span[text()='Practice Form']"));
-        executor.executeScript("arguments[0].click();", practiceFormsSubMenu);
+        elementHelper.clickJSElement(practiceFormsSubMenu);
 
         WebElement firstNameElement = driver.findElement(By.cssSelector("input[placeholder='First Name']"));
         String firstNameValue = "Roxana";
@@ -65,10 +65,7 @@ public class PracticeFormTest extends SharedData {
                 break;
         }
 
-        //pentru a face scroll in jos
-        //prima valoare X- face scroll stanga sau dreapta, a doua valoare y= face scroll sus jos
-        JavascriptExecutor js = (JavascriptExecutor) driver;
-        js.executeScript("window.scrollBy(0,400)", "");
+        pageHelper.scrollPage(0,400);
         List<WebElement> hobbiesElementList = driver.findElements(By.cssSelector("div[id='hobbiesWrapper']>div>div>label[class='custom-control-label']"));
         List<String> hobbyValues = Arrays.asList("Sports", "Reading");
         for(int index=0; index<hobbiesElementList.size(); index++){
@@ -87,7 +84,7 @@ public class PracticeFormTest extends SharedData {
         currentAdressElement.sendKeys(currentAddressValue);
 
         WebElement stateElement = driver.findElement(By.id("stateCity-wrapper"));
-        js.executeScript("arguments[0].click();", stateElement);
+        elementHelper.clickJSElement(stateElement);
 
         WebElement stateInputEelement = driver.findElement(By.id("react-select-3-input"));
         String stateValue = "NCR";
@@ -100,7 +97,7 @@ public class PracticeFormTest extends SharedData {
         cityInputElement.sendKeys(Keys.ENTER);
 
         WebElement submitEelement = driver.findElement(By.id("submit"));
-        submitEelement.click();
+        elementHelper.clickElement(submitEelement);
 
         //Wait explicit
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
@@ -120,10 +117,9 @@ public class PracticeFormTest extends SharedData {
         Assert.assertEquals(tableDescriptionList.get(2).getText(), "Gender", "Gender text is not displayed right in the table");
         Assert.assertEquals(tableValueList.get(2).getText(), genderValue, "Gender text is not displayed right in the table");
 
+
+
         //Tema de validat ce a mai ramas din tabel
-
-        driver.quit();
-
 
 
 //        String genderValue = "Female";

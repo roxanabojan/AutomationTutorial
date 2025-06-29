@@ -1,10 +1,8 @@
 package tests;
 
+import helperMethods.ElementHelper;
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import sharedData.SharedData;
@@ -16,13 +14,13 @@ public class WebTablesTest extends SharedData {
     @Test
     public void TestMethod (){
 
+        ElementHelper elementHelper = new ElementHelper(driver);
 
         WebElement elementsMenu = driver.findElement(By.xpath("//h5[text()='Elements']"));
-        JavascriptExecutor executor = (JavascriptExecutor) driver;
-        executor.executeScript("arguments[0].click();", elementsMenu);
+        elementHelper.clickJSElement(elementsMenu);
 
         WebElement webTablesSubMenu = driver.findElement(By.xpath("//span[text()='Web Tables']"));
-        executor.executeScript("arguments[0].click();", webTablesSubMenu);
+        elementHelper.clickJSElement(webTablesSubMenu);
 
         List<WebElement> tableList = driver.findElements(By.xpath("//div[@class='rt-tr -even' or @class='rt-tr -odd']"));
         int tableSize = 3;
@@ -30,7 +28,7 @@ public class WebTablesTest extends SharedData {
 
         //Identificam un element.
         WebElement addElement = driver.findElement(By.id("addNewRecordButton"));
-        addElement.click();
+        elementHelper.clickElement(addElement);
 
         WebElement firstnameElement = driver.findElement(By.id("firstName"));
         String firstnameValue = "Roxana";
@@ -57,7 +55,7 @@ public class WebTablesTest extends SharedData {
         departmentElement.sendKeys(departmentValue);
 
         WebElement submitElement = driver.findElement(By.id("submit"));
-        executor.executeScript("arguments[0].click();", submitElement);
+        elementHelper.clickJSElement(submitElement);
         //acest cod de javascript ajuta cand nu merge comanda normala de click (forteaza cumva sa treaca de orice
         // si sa faca click pe buton)
 
@@ -72,7 +70,7 @@ public class WebTablesTest extends SharedData {
 
         //Edit functionlity
         WebElement editElement = driver.findElement(By.id("edit-record-4"));
-        editElement.click();
+        elementHelper.clickElement(editElement);
 
         WebElement editFirstNameEelement = driver.findElement(By.id("firstName"));
         String editFirstNameValue = "ada";
@@ -105,7 +103,7 @@ public class WebTablesTest extends SharedData {
         editDepartmentEelement.sendKeys(editDepartmentValue);
 
         WebElement editLine = driver.findElement(By.id("submit"));
-        executor.executeScript("arguments[0].click();", editLine);
+        elementHelper.clickJSElement(editLine);
 
         tableList = driver.findElements(By.xpath("//div[@class='rt-tr -even' or @class='rt-tr -odd']"));
         Assert.assertEquals(tableList.size(), tableSize +1);
@@ -118,11 +116,9 @@ public class WebTablesTest extends SharedData {
 
         //Delete element
         WebElement deleteElement = driver.findElement(By.id("delete-record-4"));
-        deleteElement.click();
+        elementHelper.clickElement(deleteElement);
 
         tableList = driver.findElements(By.xpath("//div[@class='rt-tr -even' or @class='rt-tr -odd']"));
         Assert.assertEquals(tableList.size(), tableSize);
-
-        driver.quit();
     }
 }
