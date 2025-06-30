@@ -30,74 +30,75 @@ public class PracticeFormTest extends SharedData {
 
         WebElement firstNameElement = driver.findElement(By.cssSelector("input[placeholder='First Name']"));
         String firstNameValue = "Roxana";
-        firstNameElement.sendKeys(firstNameValue);
+        elementHelper.fillElement(firstNameElement, firstNameValue);
 
         WebElement lastNameElement = driver.findElement(By.cssSelector("input[placeholder='Last Name']"));
         String lastNameValue = "Bojan";
-        lastNameElement.sendKeys(lastNameValue);
+        elementHelper.fillElement(lastNameElement, lastNameValue);
 
         WebElement emailElement = driver.findElement(By.cssSelector("input[placeholder='name@example.com']"));
         String emailValue = "test@test.com";
-        emailElement.sendKeys(emailValue);
+        elementHelper.fillElement(emailElement, emailValue);
 
         WebElement mobileElement = driver.findElement(By.cssSelector("input[placeholder='Mobile Number']"));
         String mobileValue = "0744122133";
-        mobileElement.sendKeys(mobileValue);
+        elementHelper.fillElement(mobileElement, mobileValue);
 
         WebElement subjectsEelement = driver.findElement(By.id("subjectsInput"));
         List<String> subjectsValue = Arrays.asList("Maths", "Arts", "Accounting", "Social Studies");
         for(int index=0; index<subjectsValue.size(); index++){
-            subjectsEelement.sendKeys(subjectsValue.get(index));
-            subjectsEelement.sendKeys(Keys.ENTER);
+            elementHelper.fillElement(subjectsEelement, subjectsValue.get(index));
+            elementHelper.pressElement(subjectsEelement, Keys.ENTER);
         }
 
         String genderValue = "Female";
         List<WebElement> genderElementList = driver.findElements(By.cssSelector("div[id='genterWrapper']>div>div>label[class='custom-control-label']"));
         switch (genderValue){
             case "Male":
-                genderElementList.get(0).click();
+                elementHelper.clickElement(genderElementList.get(0));
                 break;
             case "Female":
-                genderElementList.get(1).click();
+                elementHelper.clickElement(genderElementList.get(1));
                 break;
             case "Other":
-                genderElementList.get(2).click();
+                elementHelper.clickElement(genderElementList.get(2));
                 break;
         }
 
         pageHelper.scrollPage(0,400);
+
         List<WebElement> hobbiesElementList = driver.findElements(By.cssSelector("div[id='hobbiesWrapper']>div>div>label[class='custom-control-label']"));
         List<String> hobbyValues = Arrays.asList("Sports", "Reading");
         for(int index=0; index<hobbiesElementList.size(); index++){
             if(hobbyValues.contains(hobbiesElementList.get(index).getText())) {
-                hobbiesElementList.get(index).click();
+                elementHelper.clickElement(hobbiesElementList.get(index));
             }
         }
 
         WebElement uploadElement = driver.findElement(By.id("uploadPicture"));
         String uploadValue = "src/test/resources/epix.jpg";
         File file = new File(uploadValue);
-        uploadElement.sendKeys(file.getAbsolutePath());
+        elementHelper.fillElement(uploadElement, file.getAbsolutePath());
 
         WebElement currentAdressElement = driver.findElement(By.id("currentAddress"));
         String currentAddressValue = "str. Horea, nr.49";
-        currentAdressElement.sendKeys(currentAddressValue);
+        elementHelper.fillElement(currentAdressElement, currentAddressValue);
 
         WebElement stateElement = driver.findElement(By.id("stateCity-wrapper"));
         elementHelper.clickJSElement(stateElement);
 
         WebElement stateInputEelement = driver.findElement(By.id("react-select-3-input"));
         String stateValue = "NCR";
-        stateInputEelement.sendKeys(stateValue);
-        stateInputEelement.sendKeys(Keys.ENTER);
+        elementHelper.fillElement(stateInputEelement, stateValue);
+        elementHelper.pressElement(stateInputEelement, Keys.ENTER);
 
         WebElement cityInputElement = driver.findElement(By.id("react-select-4-input"));
         String cityValue = "Delhi";
-        cityInputElement.sendKeys(cityValue);
-        cityInputElement.sendKeys(Keys.ENTER);
+        elementHelper.fillElement(cityInputElement, cityValue);
+        elementHelper.pressElement(cityInputElement, Keys.ENTER);
 
-        WebElement submitEelement = driver.findElement(By.id("submit"));
-        elementHelper.clickElement(submitEelement);
+        WebElement submitElement = driver.findElement(By.id("submit"));
+        elementHelper.clickJSElement(submitElement);
 
         //Wait explicit
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
