@@ -47,8 +47,7 @@ public class PracticeFormTest extends SharedData {
         WebElement subjectsEelement = driver.findElement(By.id("subjectsInput"));
         List<String> subjectsValue = Arrays.asList("Maths", "Arts", "Accounting", "Social Studies");
         for(int index=0; index<subjectsValue.size(); index++){
-            elementHelper.fillElement(subjectsEelement, subjectsValue.get(index));
-            elementHelper.pressElement(subjectsEelement, Keys.ENTER);
+            elementHelper.fillPressElement(subjectsEelement, subjectsValue.get(index), Keys.ENTER);
         }
 
         String genderValue = "Female";
@@ -70,7 +69,7 @@ public class PracticeFormTest extends SharedData {
         List<WebElement> hobbiesElementList = driver.findElements(By.cssSelector("div[id='hobbiesWrapper']>div>div>label[class='custom-control-label']"));
         List<String> hobbyValues = Arrays.asList("Sports", "Reading");
         for(int index=0; index<hobbiesElementList.size(); index++){
-            if(hobbyValues.contains(hobbiesElementList.get(index).getText())) {
+            if(hobbyValues.contains(hobbiesElementList.get(index).getText())){
                 elementHelper.clickElement(hobbiesElementList.get(index));
             }
         }
@@ -89,31 +88,24 @@ public class PracticeFormTest extends SharedData {
 
         WebElement stateInputEelement = driver.findElement(By.id("react-select-3-input"));
         String stateValue = "NCR";
-        elementHelper.fillElement(stateInputEelement, stateValue);
-        elementHelper.pressElement(stateInputEelement, Keys.ENTER);
+        elementHelper.fillPressElement(stateInputEelement, stateValue, Keys.ENTER);
 
         WebElement cityInputElement = driver.findElement(By.id("react-select-4-input"));
         String cityValue = "Delhi";
-        elementHelper.fillElement(cityInputElement, cityValue);
-        elementHelper.pressElement(cityInputElement, Keys.ENTER);
+        elementHelper.fillPressElement(cityInputElement, cityValue, Keys.ENTER);
 
         WebElement submitElement = driver.findElement(By.id("submit"));
         elementHelper.clickJSElement(submitElement);
 
-        //Wait explicit
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("//table//td[1]")));
-        wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("//table//td[2]")));
-
         List<WebElement> tableDescriptionList = driver.findElements(By.xpath("//table//td[1]"));
         List<WebElement> tableValueList = driver.findElements(By.xpath("//table//td[2]"));
 
-        Assert.assertEquals(tableDescriptionList.get(0).getText(), "Student Name", "Student Name text is not displayed right in the table");
-        Assert.assertTrue(tableValueList.get(0).getText().contains(firstNameValue), "First Name text is not displayed right in the table");
-        Assert.assertTrue(tableValueList.get(0).getText().contains(lastNameValue), "Last Name text is not displayed right in the table");
+        elementHelper.validateElementEqualsText(tableDescriptionList.get(0), "Student Name");
+        elementHelper.validateElementContainsText(tableValueList.get(0), firstNameElement.getText());
+        elementHelper.validateElementContainsText(tableValueList.get(0), lastNameElement.getText());
 
-        Assert.assertEquals(tableDescriptionList.get(1).getText(), "Student Email", "Student Email text is not displayed right in the table");
-        Assert.assertEquals(tableValueList.get(1).getText(), emailValue, "Student Name text is not displayed right in the table");
+        elementHelper.validateElementEqualsText(tableDescriptionList.get(1), "Student Email");
+        elementHelper.validateElementContainsText(tableValueList.get(1), emailValue);
 
         Assert.assertEquals(tableDescriptionList.get(2).getText(), "Gender", "Gender text is not displayed right in the table");
         Assert.assertEquals(tableValueList.get(2).getText(), genderValue, "Gender text is not displayed right in the table");

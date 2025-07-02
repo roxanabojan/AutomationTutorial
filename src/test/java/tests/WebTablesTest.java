@@ -27,7 +27,7 @@ public class WebTablesTest extends SharedData {
 
         List<WebElement> tableList = driver.findElements(By.xpath("//div[@class='rt-tr -even' or @class='rt-tr -odd']"));
         int tableSize = 3;
-        Assert.assertEquals(tableList.size(), tableSize, "Expected table size: " + tableSize + " is not correct");
+        elementHelper.validateListSize(tableList, tableSize);
 
         //Identificam un element.
         WebElement addElement = driver.findElement(By.id("addNewRecordButton"));
@@ -63,13 +63,17 @@ public class WebTablesTest extends SharedData {
         // si sa faca click pe buton)
 
         tableList = driver.findElements(By.xpath("//div[@class='rt-tr -even' or @class='rt-tr -odd']"));
-        Assert.assertEquals(tableList.size(), tableSize +1);
-        Assert.assertTrue(tableList.get(tableSize).getText().contains(firstnameValue));
-        Assert.assertTrue(tableList.get(tableSize).getText().contains(lastnameValue));
-        Assert.assertTrue(tableList.get(tableSize).getText().contains(emailValue));
-        Assert.assertTrue(tableList.get(tableSize).getText().contains(ageValue));
-        Assert.assertTrue(tableList.get(tableSize).getText().contains(salaryValue));
-        Assert.assertTrue(tableList.get(tableSize).getText().contains(departmentValue));
+        elementHelper.validateListSize(tableList,tableSize + 1);
+
+//        tableList = driver.findElements(By.xpath("//div[@class='rt-tr -even' or @class='rt-tr -odd']"));
+//        elementHelper.validateListSize(tableList, tableSize + 1);
+
+        elementHelper.validateElementContainsText(tableList.get(tableSize), firstnameValue);
+        elementHelper.validateElementContainsText(tableList.get(tableSize), lastnameValue);
+        elementHelper.validateElementContainsText(tableList.get(tableSize), emailValue);
+        elementHelper.validateElementContainsText(tableList.get(tableSize), ageValue);
+        elementHelper.validateElementContainsText(tableList.get(tableSize),salaryValue);
+        elementHelper.validateElementContainsText(tableList.get(tableSize), departmentValue);
 
         //Edit functionlity
         WebElement editElement = driver.findElement(By.id("edit-record-4"));
@@ -77,8 +81,7 @@ public class WebTablesTest extends SharedData {
 
         WebElement editFirstNameEelement = driver.findElement(By.id("firstName"));
         String editFirstNameValue = "ada";
-        editFirstNameEelement.clear();
-        elementHelper.fillElement(editFirstNameEelement, editFirstNameValue);
+        elementHelper.clearFillElement(editFirstNameEelement, editFirstNameValue);
 
         WebElement editLastNameElement = driver.findElement(By.id("lastName"));
         String editLastNameValue = "pop";
@@ -112,19 +115,20 @@ public class WebTablesTest extends SharedData {
         wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("//div[@class='rt-tr -even' or @class='rt-tr -odd']")));
 
         tableList = driver.findElements(By.xpath("//div[@class='rt-tr -even' or @class='rt-tr -odd']"));
-        Assert.assertEquals(tableList.size(), tableSize +1);
-        Assert.assertTrue(tableList.get(tableSize).getText().contains(editFirstNameValue));
-        Assert.assertTrue(tableList.get(tableSize).getText().contains(editLastNameValue));
-        Assert.assertTrue(tableList.get(tableSize).getText().contains(editEmailValue));
-        Assert.assertTrue(tableList.get(tableSize).getText().contains(editAgeValue));
-        Assert.assertTrue(tableList.get(tableSize).getText().contains(editSalaryValue));
-        Assert.assertTrue(tableList.get(tableSize).getText().contains(editDepartmentValue));
+        elementHelper.validateListSize(tableList, tableSize + 1);
+
+       elementHelper.validateElementContainsText(tableList.get(tableSize), editFirstNameValue);
+       elementHelper.validateElementContainsText(tableList.get(tableSize), editLastNameValue);
+       elementHelper.validateElementContainsText(tableList.get(tableSize), editEmailValue);
+       elementHelper.validateElementContainsText(tableList.get(tableSize), editAgeValue);
+       elementHelper.validateElementContainsText(tableList.get(tableSize), editSalaryValue);
+       elementHelper.validateElementContainsText(tableList.get(tableSize), editDepartmentValue);
 
         //Delete element
         WebElement deleteElement = driver.findElement(By.id("delete-record-4"));
         elementHelper.clickJSElement(deleteElement);
 
         tableList = driver.findElements(By.xpath("//div[@class='rt-tr -even' or @class='rt-tr -odd']"));
-        Assert.assertEquals(tableList.size(), tableSize);
+        elementHelper.validateListSize(tableList, tableSize);
     }
 }
