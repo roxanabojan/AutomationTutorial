@@ -25,8 +25,8 @@ public class WebTablesTest extends SharedData {
         WebElement webTablesSubMenu = driver.findElement(By.xpath("//span[text()='Web Tables']"));
         elementHelper.clickJSElement(webTablesSubMenu);
 
-        List<WebElement> tableList = driver.findElements(By.xpath("//div[@class='rt-tr -even' or @class='rt-tr -odd']"));
         int tableSize = 3;
+        List<WebElement> tableList = driver.findElements(By.xpath("//div[@class='rt-tr -even' or @class='rt-tr -odd']"));
         elementHelper.validateListSize(tableList, tableSize);
 
         //Identificam un element.
@@ -59,8 +59,6 @@ public class WebTablesTest extends SharedData {
 
         WebElement submitElement = driver.findElement(By.id("submit"));
         elementHelper.clickJSElement(submitElement);
-        //acest cod de javascript ajuta cand nu merge comanda normala de click (forteaza cumva sa treaca de orice
-        // si sa faca click pe buton)
 
         tableList = driver.findElements(By.xpath("//div[@class='rt-tr -even' or @class='rt-tr -odd']"));
         elementHelper.validateListSize(tableList,tableSize + 1);
@@ -85,28 +83,23 @@ public class WebTablesTest extends SharedData {
 
         WebElement editLastNameElement = driver.findElement(By.id("lastName"));
         String editLastNameValue = "pop";
-        editLastNameElement.clear();
-        elementHelper.fillElement(editLastNameElement, editLastNameValue);
+        elementHelper.clearFillElement(editLastNameElement, editLastNameValue);
 
         WebElement editEmailEelement = driver.findElement(By.id("userEmail"));
         String editEmailValue = "test1@testest.com";
-        editEmailEelement.clear();
-        elementHelper.fillElement(editEmailEelement, editEmailValue);
+        elementHelper.clearFillElement(editEmailEelement, editEmailValue);
 
         WebElement editAgeEelement = driver.findElement(By.id("age"));
         String editAgeValue = "40";
-        editAgeEelement.clear();
-        elementHelper.fillElement(editAgeEelement, editAgeValue);
+        elementHelper.clearFillElement(editAgeEelement, editAgeValue);
 
         WebElement editSalaryEelement = driver.findElement(By.id("salary"));
         String editSalaryValue = "40";
-        editSalaryEelement.clear();
-        elementHelper.fillElement(editSalaryEelement, editSalaryValue);
+        elementHelper.clearFillElement(editSalaryEelement, editSalaryValue);
 
         WebElement editDepartmentEelement = driver.findElement(By.id("department"));
         String editDepartmentValue = "Finante";
-        editDepartmentEelement.clear();
-        elementHelper.fillElement(editDepartmentEelement, editDepartmentValue);
+        elementHelper.clearFillElement(editDepartmentEelement, editDepartmentValue);
 
         WebElement editLine = driver.findElement(By.id("submit"));
         elementHelper.clickJSElement(editLine);
@@ -117,12 +110,12 @@ public class WebTablesTest extends SharedData {
         tableList = driver.findElements(By.xpath("//div[@class='rt-tr -even' or @class='rt-tr -odd']"));
         elementHelper.validateListSize(tableList, tableSize + 1);
 
-       elementHelper.validateElementContainsText(tableList.get(tableSize), editFirstNameValue);
-       elementHelper.validateElementContainsText(tableList.get(tableSize), editLastNameValue);
-       elementHelper.validateElementContainsText(tableList.get(tableSize), editEmailValue);
-       elementHelper.validateElementContainsText(tableList.get(tableSize), editAgeValue);
-       elementHelper.validateElementContainsText(tableList.get(tableSize), editSalaryValue);
-       elementHelper.validateElementContainsText(tableList.get(tableSize), editDepartmentValue);
+        elementHelper.validateElementContainsText(tableList.get(tableSize), editFirstNameValue);
+        elementHelper.validateElementContainsText(tableList.get(tableSize), editLastNameValue);
+        elementHelper.validateElementContainsText(tableList.get(tableSize), editEmailValue);
+        elementHelper.validateElementContainsText(tableList.get(tableSize), editAgeValue);
+        elementHelper.validateElementContainsText(tableList.get(tableSize), editSalaryValue);
+        elementHelper.validateElementContainsText(tableList.get(tableSize), editDepartmentValue);
 
         //Delete element
         WebElement deleteElement = driver.findElement(By.id("delete-record-4"));

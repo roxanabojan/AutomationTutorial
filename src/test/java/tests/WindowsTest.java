@@ -39,8 +39,7 @@ public class WindowsTest extends SharedData {
         //driver.navigate().to("https://demoqa.com/browser-windows");
 
         WebElement newWindow = driver.findElement(By.id("windowButton"));
-        elementHelper.clickJSElement();
-        System.out.println(driver.getCurrentUrl());
+        elementHelper.clickJSElement(newWindow);
 
         tabHelper.switchToSpecificTab(1);
         tabHelper.closeCurrentTab();

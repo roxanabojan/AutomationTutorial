@@ -107,42 +107,29 @@ public class PracticeFormTest extends SharedData {
         elementHelper.validateElementEqualsText(tableDescriptionList.get(1), "Student Email");
         elementHelper.validateElementContainsText(tableValueList.get(1), emailValue);
 
-        Assert.assertEquals(tableDescriptionList.get(2).getText(), "Gender", "Gender text is not displayed right in the table");
-        Assert.assertEquals(tableValueList.get(2).getText(), genderValue, "Gender text is not displayed right in the table");
+        elementHelper.validateElementEqualsText(tableDescriptionList.get(2), "Gender");
+        elementHelper.validateElementEqualsText(tableValueList.get(2), genderValue);
 
+        elementHelper.validateElementEqualsText(tableDescriptionList.get(3), "Mobile");
+        elementHelper.validateElementEqualsText(tableValueList.get(3), mobileValue);
 
+        String allSubjects = String.join(", ", subjectsValue);
+        elementHelper.validateElementEqualsText(tableDescriptionList.get(5), "Subjects");
+        elementHelper.validateElementEqualsText(tableValueList.get(5), allSubjects);
 
-        //Tema de validat ce a mai ramas din tabel
+        String allHobbies = String.join(", ", hobbyValues);
+        elementHelper.validateElementEqualsText(tableDescriptionList.get(6), "Hobbies");
+        elementHelper.validateElementEqualsText(tableValueList.get(6), allHobbies);
 
+        String fileName = uploadValue.substring(19);
+        elementHelper.validateElementEqualsText(tableDescriptionList.get(7), "Picture");
+        elementHelper.validateElementEqualsText(tableValueList.get(7), fileName);
 
-//        String genderValue = "Female";
-//        List<WebElement> genderElementList = driver.findElements(By.cssSelector("div[id='genterWrapper']>div>div>label[class='custom-control-label']"));
-//        switch (genderValue){
-//            case "Male":
-//                genderElementList.get(0).click();
-//                break;
-//            case "Female":
-//                genderElementList.get(1).click();
-//                break;
-//            case "Other":
-//                genderElementList.get(2).click();
-//                break;
-//
-//        }
-//
-//        JavascriptExecutor js = (JavascriptExecutor) driver;
-//        js.executeScript("window.scrollBy(0,400)", "");
-//        List<WebElement> hobbiesElementList = driver.findElements(By.cssSelector("div[id='hobbiesWrapper']>div>div>label[class='custom-control-label']"));
-//        List<String> hobbyValues = Arrays.asList("Reading");
-//        for(int index=0; index<hobbiesElementList.size(); index++) {
-//            if(hobbyValues.contains(hobbiesElementList.get(index).getText())) {
-//                hobbiesElementList.get(index).click();
-//            }
-//        }
-//
-//        WebElement uploadElement = driver.findElement(By.id("uploadPicture"));
-//        String uploadValue = "src/test/resources/epix.jpg";
-//        File file = new File(uploadValue);
-//        uploadElement.sendKeys(uploadValue);
+        elementHelper.validateElementEqualsText(tableDescriptionList.get(8), "Address");
+        elementHelper.validateElementEqualsText(tableValueList.get(8), currentAddressValue);
+
+        elementHelper.validateElementEqualsText(tableDescriptionList.get(9), "State and City");
+        elementHelper.validateElementContainsText(tableValueList.get(9), stateValue);
+        elementHelper.validateElementContainsText(tableValueList.get(9), cityValue);
     }
 }
