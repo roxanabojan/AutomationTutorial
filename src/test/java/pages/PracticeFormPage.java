@@ -91,8 +91,8 @@ public class PracticeFormPage extends BasePage {
     }
 
     public void validateFormValues(String firstNameValue, String lastNameValue, String emailValue, String genderValue,
-                                   String mobileValue, String subjectsValue, String hobbyValues, String uploadValue,
-                                   String currentAddressValue, String stateValue, String cityValue){
+                                   String mobileValue, List<String>subjectsValue, List<String> hobbyValues,
+                                   String uploadValue, String currentAddressValue, String stateValue, String cityValue){
 
         elementHelper.validateElementEqualsText(tableDescriptionList.get(0), "Student Name");
         elementHelper.validateElementContainsText(tableValueList.get(0), firstNameValue);
@@ -115,7 +115,7 @@ public class PracticeFormPage extends BasePage {
         elementHelper.validateElementEqualsText(tableDescriptionList.get(6), "Hobbies");
         elementHelper.validateElementEqualsText(tableValueList.get(6), allHobbies);
 
-        String fileName = uploadValue.substring(19);
+        //String fileName = uploadValue.substring(19);
         File file = new File(uploadValue);
         elementHelper.validateElementEqualsText(tableDescriptionList.get(7), "Picture");
         elementHelper.validateElementEqualsText(tableValueList.get(7), file.getName());

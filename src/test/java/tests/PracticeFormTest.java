@@ -47,40 +47,7 @@ public class PracticeFormTest extends SharedData {
         practiceFormPage.fillEntireForm(firstNameValue, lastNameValue, emailValue, mobileValue, subjectsValue,
                 genderValue, hobbyValues, uploadValue, currentAddressValue, stateValue, cityValue);
 
-
-        List<WebElement> tableDescriptionList = driver.findElements(By.xpath("//table//td[1]"));
-        List<WebElement> tableValueList = driver.findElements(By.xpath("//table//td[2]"));
-
-        elementHelper.validateElementEqualsText(tableDescriptionList.get(0), "Student Name");
-        elementHelper.validateElementContainsText(tableValueList.get(0), firstNameElement.getText());
-        elementHelper.validateElementContainsText(tableValueList.get(0), lastNameElement.getText());
-
-        elementHelper.validateElementEqualsText(tableDescriptionList.get(1), "Student Email");
-        elementHelper.validateElementContainsText(tableValueList.get(1), emailValue);
-
-        elementHelper.validateElementEqualsText(tableDescriptionList.get(2), "Gender");
-        elementHelper.validateElementEqualsText(tableValueList.get(2), genderValue);
-
-        elementHelper.validateElementEqualsText(tableDescriptionList.get(3), "Mobile");
-        elementHelper.validateElementEqualsText(tableValueList.get(3), mobileValue);
-
-        String allSubjects = String.join(", ", subjectsValue);
-        elementHelper.validateElementEqualsText(tableDescriptionList.get(5), "Subjects");
-        elementHelper.validateElementEqualsText(tableValueList.get(5), allSubjects);
-
-        String allHobbies = String.join(", ", hobbyValues);
-        elementHelper.validateElementEqualsText(tableDescriptionList.get(6), "Hobbies");
-        elementHelper.validateElementEqualsText(tableValueList.get(6), allHobbies);
-
-        String fileName = uploadValue.substring(19);
-        elementHelper.validateElementEqualsText(tableDescriptionList.get(7), "Picture");
-        elementHelper.validateElementEqualsText(tableValueList.get(7), fileName);
-
-        elementHelper.validateElementEqualsText(tableDescriptionList.get(8), "Address");
-        elementHelper.validateElementEqualsText(tableValueList.get(8), currentAddressValue);
-
-        elementHelper.validateElementEqualsText(tableDescriptionList.get(9), "State and City");
-        elementHelper.validateElementContainsText(tableValueList.get(9), stateValue);
-        elementHelper.validateElementContainsText(tableValueList.get(9), cityValue);
+        practiceFormPage.validateFormValues(firstNameValue, lastNameValue, emailValue, genderValue, mobileValue,
+                subjectsValue, hobbyValues, uploadValue, currentAddressValue, stateValue, cityValue);
     }
 }
