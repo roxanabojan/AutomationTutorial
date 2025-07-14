@@ -7,6 +7,9 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+import pages.FormsPage;
+import pages.IndexPage;
+import pages.PracticeFormPage;
 import sharedData.SharedData;
 
 import java.io.File;
@@ -22,80 +25,28 @@ public class PracticeFormTest extends SharedData {
         ElementHelper elementHelper = new ElementHelper(driver);
         PageHelper pageHelper = new PageHelper(driver);
 
-        WebElement formsMenu = driver.findElement(By.xpath("//h5[text()='Forms']"));
-        elementHelper.clickJSElement(formsMenu);
+        IndexPage indexPage = new IndexPage(driver);
+        indexPage.interactWithFormsMenu();
 
-        WebElement practiceFormsSubMenu = driver.findElement(By.xpath("//span[text()='Practice Form']"));
-        elementHelper.clickJSElement(practiceFormsSubMenu);
+        FormsPage formsPage = new FormsPage(driver);
+        formsPage.interactPracticeFormSubMenu();
 
-        WebElement firstNameElement = driver.findElement(By.cssSelector("input[placeholder='First Name']"));
         String firstNameValue = "Roxana";
-        elementHelper.fillElement(firstNameElement, firstNameValue);
-
-        WebElement lastNameElement = driver.findElement(By.cssSelector("input[placeholder='Last Name']"));
         String lastNameValue = "Bojan";
-        elementHelper.fillElement(lastNameElement, lastNameValue);
-
-        WebElement emailElement = driver.findElement(By.cssSelector("input[placeholder='name@example.com']"));
         String emailValue = "test@test.com";
-        elementHelper.fillElement(emailElement, emailValue);
-
-        WebElement mobileElement = driver.findElement(By.cssSelector("input[placeholder='Mobile Number']"));
         String mobileValue = "0744122133";
-        elementHelper.fillElement(mobileElement, mobileValue);
-
-        WebElement subjectsEelement = driver.findElement(By.id("subjectsInput"));
         List<String> subjectsValue = Arrays.asList("Maths", "Arts", "Accounting", "Social Studies");
-        for(int index=0; index<subjectsValue.size(); index++){
-            elementHelper.fillPressElement(subjectsEelement, subjectsValue.get(index), Keys.ENTER);
-        }
-
         String genderValue = "Female";
-        List<WebElement> genderElementList = driver.findElements(By.cssSelector("div[id='genterWrapper']>div>div>label[class='custom-control-label']"));
-        switch (genderValue){
-            case "Male":
-                elementHelper.clickElement(genderElementList.get(0));
-                break;
-            case "Female":
-                elementHelper.clickElement(genderElementList.get(1));
-                break;
-            case "Other":
-                elementHelper.clickElement(genderElementList.get(2));
-                break;
-        }
-
-        pageHelper.scrollPage(0,400);
-
-        List<WebElement> hobbiesElementList = driver.findElements(By.cssSelector("div[id='hobbiesWrapper']>div>div>label[class='custom-control-label']"));
         List<String> hobbyValues = Arrays.asList("Sports", "Reading");
-        for(int index=0; index<hobbiesElementList.size(); index++){
-            if(hobbyValues.contains(hobbiesElementList.get(index).getText())){
-                elementHelper.clickElement(hobbiesElementList.get(index));
-            }
-        }
-
-        WebElement uploadElement = driver.findElement(By.id("uploadPicture"));
         String uploadValue = "src/test/resources/epix.jpg";
-        File file = new File(uploadValue);
-        elementHelper.fillElement(uploadElement, file.getAbsolutePath());
-
-        WebElement currentAdressElement = driver.findElement(By.id("currentAddress"));
         String currentAddressValue = "str. Horea, nr.49";
-        elementHelper.fillElement(currentAdressElement, currentAddressValue);
-
-        WebElement stateElement = driver.findElement(By.id("stateCity-wrapper"));
-        elementHelper.clickJSElement(stateElement);
-
-        WebElement stateInputEelement = driver.findElement(By.id("react-select-3-input"));
         String stateValue = "NCR";
-        elementHelper.fillPressElement(stateInputEelement, stateValue, Keys.ENTER);
-
-        WebElement cityInputElement = driver.findElement(By.id("react-select-4-input"));
         String cityValue = "Delhi";
-        elementHelper.fillPressElement(cityInputElement, cityValue, Keys.ENTER);
 
-        WebElement submitElement = driver.findElement(By.id("submit"));
-        elementHelper.clickJSElement(submitElement);
+        PracticeFormPage practiceFormPage = new PracticeFormPage(driver);
+        practiceFormPage.fillEntireForm(firstNameValue, lastNameValue, emailValue, mobileValue, subjectsValue,
+                genderValue, hobbyValues, uploadValue, currentAddressValue, stateValue, cityValue);
+
 
         List<WebElement> tableDescriptionList = driver.findElements(By.xpath("//table//td[1]"));
         List<WebElement> tableValueList = driver.findElements(By.xpath("//table//td[2]"));
