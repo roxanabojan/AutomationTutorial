@@ -1,36 +1,35 @@
 package pages;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 import java.util.List;
 
-public class WebTablePage extends BasePage{
+public class WebTablePage extends BasePage {
 
-    public WebTablePage(WebDriver driver){
+    public WebTablePage(WebDriver driver) {
         super(driver);
     }
 
     @FindBy(xpath = "//div[@class='rt-tr -even' or @class='rt-tr -odd']")
-    public List<WebElement> tableList;
+    private List<WebElement> tableList;
     @FindBy(id = "addNewRecordButton")
-    public WebElement addElement;
+    private WebElement addElement;
     @FindBy(id = "firstName")
-    public WebElement firstnameElement;
+    private WebElement firstnameElement;
     @FindBy(id = "lastName")
-    public WebElement lastnameElement;
+    private WebElement lastnameElement;
     @FindBy(id = "userEmail")
-    public WebElement emailElement;
+    private WebElement emailElement;
     @FindBy(id = "age")
-    public WebElement ageElement;
+    private WebElement ageElement;
     @FindBy(id = "salary")
-    public WebElement salaryElement;
+    private WebElement salaryElement;
     @FindBy(id = "department")
-    public WebElement departmentElement;
+    private WebElement departmentElement;
     @FindBy(id = "submit")
-    public WebElement submitElement;
+    private WebElement submitElement;
 
     @FindBy(id = "edit-record-4")
     public WebElement editElement;
@@ -50,7 +49,7 @@ public class WebTablePage extends BasePage{
     public WebElement deleteElement;
 
     public void addNewEntry(int tableSize, String firstnameValue, String lastnameValue, String emailValue,
-                            String ageValue, String salaryValue, String departmentValue){
+                            String ageValue, String salaryValue, String departmentValue) {
         elementHelper.validateListSize(tableList, tableSize);
 
         clickAddButton();
@@ -62,17 +61,17 @@ public class WebTablePage extends BasePage{
         fillDepartment(departmentValue);
         clickSubmit();
 
-        elementHelper.validateListSize(tableList,tableSize + 1);
+        elementHelper.validateListSize(tableList, tableSize + 1);
         elementHelper.validateElementContainsText(tableList.get(tableSize), firstnameValue);
         elementHelper.validateElementContainsText(tableList.get(tableSize), lastnameValue);
         elementHelper.validateElementContainsText(tableList.get(tableSize), emailValue);
         elementHelper.validateElementContainsText(tableList.get(tableSize), ageValue);
-        elementHelper.validateElementContainsText(tableList.get(tableSize),salaryValue);
+        elementHelper.validateElementContainsText(tableList.get(tableSize), salaryValue);
         elementHelper.validateElementContainsText(tableList.get(tableSize), departmentValue);
     }
 
     public void editNewEntry(int tableSize, String editFirstNameValue, String editLastNameValue, String editEmailValue,
-                            String editAgeValue, String editSalaryValue, String editDepartmentValue){
+                             String editAgeValue, String editSalaryValue, String editDepartmentValue) {
 
         clickEditButton();
         fillEditFirstName(editFirstNameValue);
@@ -93,73 +92,73 @@ public class WebTablePage extends BasePage{
         elementHelper.validateElementContainsText(tableList.get(tableSize), editDepartmentValue);
     }
 
-    public void deleteNewEntry(int tableSize){
+    public void deleteNewEntry(int tableSize) {
         clickDeleteButton();
 
         elementHelper.validateListSize(tableList, tableSize);
     }
 
-    public void clickAddButton(){
+    public void clickAddButton() {
         elementHelper.clickElement(addElement);
     }
 
-     public void fillFirstName(String firstnameValue){
+    public void fillFirstName(String firstnameValue) {
         elementHelper.fillElement(firstnameElement, firstnameValue);
     }
 
-    public void fillLastName (String lastnameValue){
-        elementHelper.fillElement(lastnameElement,lastnameValue);
+    public void fillLastName(String lastnameValue) {
+        elementHelper.fillElement(lastnameElement, lastnameValue);
     }
 
-    public void fillEmail(String emailValue){
+    public void fillEmail(String emailValue) {
         elementHelper.fillElement(emailElement, emailValue);
     }
 
-    public void fillAge (String ageValue){
+    public void fillAge(String ageValue) {
         elementHelper.fillElement(ageElement, ageValue);
     }
 
-    public void fillSalary(String salaryValue){
+    public void fillSalary(String salaryValue) {
         elementHelper.fillElement(salaryElement, salaryValue);
     }
 
-    public void fillDepartment(String departmentValue){
+    public void fillDepartment(String departmentValue) {
         elementHelper.fillElement(departmentElement, departmentValue);
     }
 
-    public void clickSubmit(){
+    public void clickSubmit() {
         elementHelper.clickJSElement(submitElement);
     }
 
-    public void clickEditButton(){
+    public void clickEditButton() {
         elementHelper.clickJSElement(editElement);
     }
 
-    public void fillEditFirstName(String firstnameValue){
+    public void fillEditFirstName(String firstnameValue) {
         elementHelper.clearFillElement(editFirstNameEelement, firstnameValue);
     }
 
-    public void fillEditLastName (String lastnameValue){
-        elementHelper.clearFillElement(editLastNameElement,lastnameValue);
+    public void fillEditLastName(String lastnameValue) {
+        elementHelper.clearFillElement(editLastNameElement, lastnameValue);
     }
 
-    public void fillEditEmail(String emailValue){
+    public void fillEditEmail(String emailValue) {
         elementHelper.clearFillElement(editEmailEelement, emailValue);
     }
 
-    public void fillEditAge (String ageValue){
+    public void fillEditAge(String ageValue) {
         elementHelper.clearFillElement(editAgeEelement, ageValue);
     }
 
-    public void fillEditSalary(String salaryValue){
+    public void fillEditSalary(String salaryValue) {
         elementHelper.clearFillElement(editSalaryEelement, salaryValue);
     }
 
-    public void fillEditDepartment(String departmentValue){
+    public void fillEditDepartment(String departmentValue) {
         elementHelper.clearFillElement(editDepartmentEelement, departmentValue);
     }
 
-    public void clickDeleteButton(){
+    public void clickDeleteButton() {
         elementHelper.clickJSElement(deleteElement);
     }
 }

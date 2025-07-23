@@ -1,9 +1,5 @@
 package tests;
 
-import helperMethods.AlertHelper;
-import helperMethods.ElementHelper;
-import helperMethods.PageHelper;
-import org.openqa.selenium.*;
 import org.testng.annotations.Test;
 import pages.AlertFrameWindowPage;
 import pages.AlertPage;
@@ -16,17 +12,13 @@ public class AlertsTest extends SharedData {
     @Test
     public void testMethod() {
 
-        ElementHelper elementHelper = new ElementHelper(driver);
-        AlertHelper alertHelper = new AlertHelper(driver);
-        PageHelper pageHelper = new PageHelper(driver);
-
-        IndexPage indexPage = new IndexPage(driver);
+        IndexPage indexPage = new IndexPage(getDriver());
         indexPage.interactWithAlertsFrameWindowMenu();
 
-        AlertFrameWindowPage alertFrameWindowPage = new AlertFrameWindowPage(driver);
+        AlertFrameWindowPage alertFrameWindowPage = new AlertFrameWindowPage(getDriver());
         alertFrameWindowPage.interctWithAlertsSubMenu();
 
-        AlertPage alertPage = new AlertPage(driver);
+        AlertPage alertPage = new AlertPage(getDriver());
         alertPage.dealAlertOk();
         alertPage.dealAlertTimer();
         alertPage.dealAlertCancel();

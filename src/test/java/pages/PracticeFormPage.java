@@ -1,13 +1,11 @@
 package pages;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 import java.io.File;
-import java.util.Arrays;
 import java.util.List;
 
 public class PracticeFormPage extends BasePage {
@@ -17,31 +15,31 @@ public class PracticeFormPage extends BasePage {
     }
 
     @FindBy(css = "input[placeholder='First Name']")
-    public WebElement firstNameElement;
+    private WebElement firstNameElement;
     @FindBy(css = "input[placeholder='Last Name']")
-    public WebElement lastNameElement;
+    private WebElement lastNameElement;
     @FindBy(css = "input[placeholder='name@example.com']")
-    public WebElement emailElement;
+    private WebElement emailElement;
     @FindBy(css = "input[placeholder='Mobile Number']")
-    public WebElement mobileElement;
+    private WebElement mobileElement;
     @FindBy(id = "subjectsInput")
-    public WebElement subjectsEelement;
+    private WebElement subjectsEelement;
     @FindBy(css = "div[id='genterWrapper']>div>div>label[class='custom-control-label']")
-    public List<WebElement> genderElementList;
+    private List<WebElement> genderElementList;
     @FindBy(css = "div[id='hobbiesWrapper']>div>div>label[class='custom-control-label']")
-    public List<WebElement> hobbiesElementList;
+    private List<WebElement> hobbiesElementList;
     @FindBy(id = "uploadPicture")
-    public WebElement uploadElement;
+    private WebElement uploadElement;
     @FindBy(id = "currentAddress")
-    public WebElement currentAdressElement;
+    private WebElement currentAdressElement;
     @FindBy(id = "stateCity-wrapper")
-    public WebElement stateElement;
+    private WebElement stateElement;
     @FindBy(id = "react-select-3-input")
-    public WebElement stateInputEelement;
+    private WebElement stateInputEelement;
     @FindBy(id = "react-select-4-input")
-    public WebElement cityInputElement;
+    private WebElement cityInputElement;
     @FindBy(id = "submit")
-    public WebElement submitElement;
+    private WebElement submitElement;
 
     @FindBy(xpath = "//table//td[1]")
     public List<WebElement> tableDescriptionList;
@@ -91,8 +89,8 @@ public class PracticeFormPage extends BasePage {
     }
 
     public void validateFormValues(String firstNameValue, String lastNameValue, String emailValue, String genderValue,
-                                   String mobileValue, List<String>subjectsValue, List<String> hobbyValues,
-                                   String uploadValue, String currentAddressValue, String stateValue, String cityValue){
+                                   String mobileValue, List<String> subjectsValue, List<String> hobbyValues,
+                                   String uploadValue, String currentAddressValue, String stateValue, String cityValue) {
 
         elementHelper.validateElementEqualsText(tableDescriptionList.get(0), "Student Name");
         elementHelper.validateElementContainsText(tableValueList.get(0), firstNameValue);

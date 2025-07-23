@@ -6,36 +6,36 @@ import org.openqa.selenium.support.FindBy;
 
 public class AlertPage extends BasePage {
 
-    public AlertPage(WebDriver driver){
+    public AlertPage(WebDriver driver) {
         super(driver);
     }
 
-    @FindBy (id = "alertButton")
-    public WebElement alerOkButtonElement;
-    @FindBy (id = "timerAlertButton")
-    public WebElement alertWaitButtonElement;
-    @FindBy (id = "confirmButton")
-    public WebElement alertOkCancelElement;
-    @FindBy (id = "promtButton")
-    public WebElement alertPromptElement;
+    @FindBy(id = "alertButton")
+    private WebElement alerOkButtonElement;
+    @FindBy(id = "timerAlertButton")
+    private WebElement alertWaitButtonElement;
+    @FindBy(id = "confirmButton")
+    private WebElement alertOkCancelElement;
+    @FindBy(id = "promtButton")
+    private WebElement alertPromptElement;
 
-    public void dealAlertOk(){
+    public void dealAlertOk() {
         elementHelper.clickElement(alerOkButtonElement);
         alertHelper.acceptAlert();
     }
 
-    public void dealAlertTimer(){
+    public void dealAlertTimer() {
         elementHelper.clickElement(alertWaitButtonElement);
         alertHelper.acceptAlert();
         pageHelper.scrollPage(0, 400);
     }
 
-    public void dealAlertCancel(){
+    public void dealAlertCancel() {
         elementHelper.clickElement(alertOkCancelElement);
         alertHelper.dismissAlert();
     }
 
-    public void dealAlertPrompt(String value){
+    public void dealAlertPrompt(String value) {
         elementHelper.clickElement(alertPromptElement);
         alertHelper.fillAlert(value);
     }

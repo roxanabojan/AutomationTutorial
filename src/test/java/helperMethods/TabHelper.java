@@ -6,18 +6,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TabHelper {
-    public WebDriver driver;
+    private WebDriver driver;
 
     public TabHelper(WebDriver driver) {
         this.driver = driver;
     }
 
-    public void switchToSpecificTab (int position){
+    public void switchToSpecificTab(int position) {
         List<String> tabList = new ArrayList<>(driver.getWindowHandles());
         driver.switchTo().window(tabList.get(position));
     }
 
-    public void closeCurrentTab(){
+    public void closeCurrentTab() {
         driver.close();
     }
 }

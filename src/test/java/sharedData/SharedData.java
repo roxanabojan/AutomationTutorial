@@ -9,10 +9,10 @@ import java.time.Duration;
 
 public class SharedData {
 
-    public WebDriver driver;
+    private WebDriver driver;
 
     @BeforeMethod
-    public void prepareEnvironment (){
+    public void prepareEnvironment() {
         //Deschidem o instanta de Chrome.
         driver = new ChromeDriver();
 
@@ -27,7 +27,11 @@ public class SharedData {
     }
 
     @AfterMethod
-    public void clearEnvironment(){
+    public void clearEnvironment() {
         driver.quit();
+    }
+
+    public WebDriver getDriver() {
+        return driver;
     }
 }

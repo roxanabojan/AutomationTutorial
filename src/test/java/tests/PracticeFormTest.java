@@ -2,18 +2,12 @@ package tests;
 
 import helperMethods.ElementHelper;
 import helperMethods.PageHelper;
-import org.openqa.selenium.*;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.FormsPage;
 import pages.IndexPage;
 import pages.PracticeFormPage;
 import sharedData.SharedData;
 
-import java.io.File;
-import java.time.Duration;
 import java.util.Arrays;
 import java.util.List;
 
@@ -22,13 +16,13 @@ public class PracticeFormTest extends SharedData {
     @Test
     public void testMethod() {
 
-        ElementHelper elementHelper = new ElementHelper(driver);
-        PageHelper pageHelper = new PageHelper(driver);
+        ElementHelper elementHelper = new ElementHelper(getDriver());
+        PageHelper pageHelper = new PageHelper(getDriver());
 
-        IndexPage indexPage = new IndexPage(driver);
+        IndexPage indexPage = new IndexPage(getDriver());
         indexPage.interactWithFormsMenu();
 
-        FormsPage formsPage = new FormsPage(driver);
+        FormsPage formsPage = new FormsPage(getDriver());
         formsPage.interactPracticeFormSubMenu();
 
         String firstNameValue = "Roxana";
@@ -43,7 +37,7 @@ public class PracticeFormTest extends SharedData {
         String stateValue = "NCR";
         String cityValue = "Delhi";
 
-        PracticeFormPage practiceFormPage = new PracticeFormPage(driver);
+        PracticeFormPage practiceFormPage = new PracticeFormPage(getDriver());
         practiceFormPage.fillEntireForm(firstNameValue, lastNameValue, emailValue, mobileValue, subjectsValue,
                 genderValue, hobbyValues, uploadValue, currentAddressValue, stateValue, cityValue);
 

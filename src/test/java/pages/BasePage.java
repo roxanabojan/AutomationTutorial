@@ -12,7 +12,7 @@ public class BasePage {
     public PageHelper pageHelper;
     public TabHelper tabHelper;
 
-    public BasePage (WebDriver driver){
+    public BasePage(WebDriver driver) {
         this.driver = driver;
         elementHelper = new ElementHelper(driver);
         alertHelper = new AlertHelper(driver);
