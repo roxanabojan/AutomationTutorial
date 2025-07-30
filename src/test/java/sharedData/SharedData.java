@@ -13,30 +13,29 @@ import java.time.Duration;
 public class SharedData {
 
     private WebDriver driver;
+    private String browser;
 
     @BeforeMethod
     public void prepareEnvironment() {
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments("window-size=1920, 1080");
-        options.addArguments("--disable-gpu");
-        options.addArguments("--disable-infobars");
-        options.addArguments("--disable-extensions");
-        options.addArguments("--headless=new");
-        options.addArguments("--incognito");
-
-        //Deschidem o instanta de Chrome.
-        driver = new ChromeDriver(options);
-
-        //Accesam o pagina specifica.
-        driver.get("https://demoqa.com");
-
-        //Facem browserul sa fie in modul maximize.
-        //driver.manage().window().maximize();
-
-        //wait implicit
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 
         LoggerUtility.startTest(this.getClass().getSimpleName());
+
+        browser = "Edge";
+        switch (browser){
+            case "Chrome":
+                ChromeBrowser chromeBrowser = new ChromeBrowser();
+                chromeBrowser.openBrowser();
+                driver = chromeBrowser.getDriver();
+                break;
+            case "Edge":
+                EdgeBrowser edgeBrowser = new EdgeBrowser();
+                edgeBrowser.openBrowser();
+                driver = edgeBrowser.getDriver();
+                break;
+
+        }
+
+        LoggerUtility.infoLog("The browser " + browser + "was opened with success");
     }
 
     @AfterMethod
@@ -46,9 +45,11 @@ public class SharedData {
         }
         driver.quit();
 
+        LoggerUtility.infoLog("The browser " + browser + "was closed with success");
+
+
         LoggerUtility.finishTest(this.getClass().getSimpleName());
     }
-
     public WebDriver getDriver() {
         return driver;
     }

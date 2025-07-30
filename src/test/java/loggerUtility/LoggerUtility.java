@@ -12,7 +12,7 @@ public class LoggerUtility {
         logger.info(Thread.currentThread().getName() + "===== Execution started: " + testName + " =====");
     }
     //Info step
-    public static void infoStep (String message){
+    public static void infoLog (String message){
         logger.info(message);
     }
     //Error step

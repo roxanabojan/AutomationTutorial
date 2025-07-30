@@ -20,16 +20,16 @@ public class IndexPage extends BasePage {
 
     public void interactWithAlertsFrameWindowMenu() {
         elementHelper.clickJSElement(alertFrameWindowMenu);
-        LoggerUtility.infoStep("The user clicks on Alert Window Frame Menu");
+        LoggerUtility.infoLog("The user clicks on Alert Window Frame Menu");
     }
 
     public void interactWithElementsMenu() {
         elementHelper.clickJSElement(elementsMenu);
-        LoggerUtility.infoStep("The user clicks on Elements Menu");
+        LoggerUtility.infoLog("The user clicks on Elements Menu");
     }
 
     public void interactWithFormsMenu() {
         elementHelper.clickJSElement(formsMenu);
-        LoggerUtility.infoStep("The user clicks on Forms Menu");
+        LoggerUtility.infoLog("The user clicks on Forms Menu");
     }
 }
