@@ -30,12 +30,15 @@ public class EdgeBrowser implements Browser{
 
     @Override
     public void configureBrowser() {
+        boolean cicd = Boolean.parseBoolean(System.getProperty("cicd"));
         firefoxOptions = new FirefoxOptions();
         firefoxOptions.addArguments("window-size=1680, 1050");
         firefoxOptions.addArguments("--disable-gpu");
         firefoxOptions.addArguments("--disable-infobars");
         firefoxOptions.addArguments("--disable-extensions");
-        //firefoxOptions.addArguments("--headless=new");
+        if(cicd){
+            firefoxOptions.addArguments("--headless=new");
+        }
         firefoxOptions.addArguments("--incognito");
     }
 

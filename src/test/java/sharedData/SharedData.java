@@ -2,13 +2,9 @@ package sharedData;
 
 import loggerUtility.LoggerUtility;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
-
-import java.time.Duration;
 
 public class SharedData {
 
@@ -20,7 +16,7 @@ public class SharedData {
 
         LoggerUtility.startTest(this.getClass().getSimpleName());
 
-        browser = "Edge";
+        browser = System.getProperty("browser");
         switch (browser){
             case "Chrome":
                 ChromeBrowser chromeBrowser = new ChromeBrowser();
@@ -35,7 +31,7 @@ public class SharedData {
 
         }
 
-        LoggerUtility.infoLog("The browser " + browser + "was opened with success");
+        LoggerUtility.infoLog("The browser " + browser + " was opened with success");
     }
 
     @AfterMethod
@@ -45,7 +41,7 @@ public class SharedData {
         }
         driver.quit();
 
-        LoggerUtility.infoLog("The browser " + browser + "was closed with success");
+        LoggerUtility.infoLog("The browser " + browser + " was closed with success");
 
 
         LoggerUtility.finishTest(this.getClass().getSimpleName());
